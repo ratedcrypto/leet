@@ -1,0 +1,14 @@
+{
+  "name": "leet",
+  "version": "1.0.0",
+  "description": "LeetCode Solutions Hub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "author": "Rated Crypto",
+  "license": "ISC"
+}
