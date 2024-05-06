@@ -88,6 +88,13 @@ function maxSubArrayUtil(nums, left, right) {
   );
 }
 
+/**
+ * Time complexity: O(nlogn)
+ *
+ *
+ * @param {number[]} nums
+ * @return {number}
+ */
 function maxSubArrayDivideAndConquerSolution(nums) {
   return maxSubArrayUtil(nums, 0, nums.length - 1);
 }
