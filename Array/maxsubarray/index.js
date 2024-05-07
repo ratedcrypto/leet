@@ -91,7 +91,6 @@ function maxSubArrayUtil(nums, left, right) {
 /**
  * Time complexity: O(nlogn)
  *
- *
  * @param {number[]} nums
  * @return {number}
  */
