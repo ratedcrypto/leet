@@ -57,4 +57,55 @@ function memoize(fn) {
 
 memoizeKnapsack = memoize(knapsack);
 
-module.exports = memoizeKnapsack;
+/**
+ * Knapsack with top down approach. Better in some cases. Only iterative approach.
+ * Recursive function's base condition is top down's initialization.
+ *
+ * Input:
+ * weight (kg): [1, 3, 4, 5]
+ * value ($): [1, 4, 5, 7]
+ * Knapsack size (bag size): 7 (kg)
+ *
+ * Matrix of n+1 (i - column) and w+1 (j - row)
+ * 0 0 0 0 0 0 0 0
+ * 0
+ * 0
+ * 0
+ * 0             x <- max profit is at matrix[4][7]
+ *
+ * @param {number[]} weights
+ * @param {number[]} values
+ * @param {number} w - knapsackSize
+ * @param {number} n - size of weights/values array
+ * @return {number} max profit
+ */
+function knapsackTopDown(weights = [], values = [], w = 0) {
+  let m = [];
+  let n = values.length;
+  // Following converts recursive base condition in to matrix initialization
+  for (i = 0; i < n + 1; i++) {
+    let row = [];
+    for (j = 0; j < w + 1; j++) {
+      row.push(0);
+    }
+    m.push(row);
+  }
+  // Convert choice diagram to iterative approach
+  for (i = 1; i < n + 1; i++) {
+    for (j = 1; j < w + 1; j++) {
+      if (weights[i - 1] <= j) {
+        m[i][j] = Math.max(
+          values[i - 1] + m[i - 1][j - weights[i - 1]],
+          m[i - 1][j]
+        );
+      } else {
+        m[i][j] = m[i - 1][j];
+      }
+    }
+  }
+
+  // Return the maximum value that can be put in the knapsack of capacity w
+  return m[n][w];
+}
+
+module.exports = { memoizeKnapsack, knapsackTopDown };

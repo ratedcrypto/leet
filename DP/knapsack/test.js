@@ -1,13 +1,17 @@
-const knapsack = require("./index.js");
+const { memoizeKnapsack, knapsackTopDown } = require("./index.js");
 
-test("knapsack function exists", () => {
-  expect(typeof knapsack).toEqual("function");
+test("memoizeKnapsack function exists", () => {
+  expect(typeof memoizeKnapsack).toEqual("function");
 });
 
 test("example 1", () => {
-  expect(knapsack([1, 3, 4, 5], [1, 4, 5, 7], 7, 4)).toEqual(9);
+  expect(memoizeKnapsack([1, 3, 4, 5], [1, 4, 5, 7], 7, 4)).toEqual(9);
 });
 
 test("example 2", () => {
-  expect(knapsack([1, 1, 9], [30, 20, 10], 10, 3)).toEqual(50);
+  expect(memoizeKnapsack([1, 1, 9], [30, 20, 10], 10, 3)).toEqual(50);
+});
+
+test("example 2", () => {
+  expect(knapsackTopDown([1, 1, 9], [30, 20, 10], 10)).toEqual(50);
 });
